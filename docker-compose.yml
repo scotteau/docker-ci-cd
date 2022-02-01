@@ -6,16 +6,36 @@ services:
     build: 
       context: ./client/
       dockerfile: Dockerfile.dev
+    volumes:
+      - /opt/app/node_modules
+      - ./client:/opt/app
 
   worker:
     build: 
       context: ./worker/
       dockerfile: Dockerfile.dev
+    volumes:
+      - ./worker:/opt/app
+      - /opt/app/node_modules
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
 
   api:
     build:
       context: ./server/
       dockerfile: Dockerfile.dev
+    volumes:
+      - /opt/app/node_modules
+      - ./server:/opt/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password
+      - PGPORT=5432
 
   redis: 
     image: redis
@@ -26,5 +46,13 @@ services:
       - POSTGRES_PASSWORD=postgres_password
   
   nginx: 
-    image: nginx
-    
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - client
+      - api
+

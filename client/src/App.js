@@ -17,11 +17,12 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Learn React !!!
           </a>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
         </header>
+        <p>Hello world!</p>
         <div>
           <Route exact path="/" component={Fib} />
           <Route path="/otherpage" component={OtherPage} />
