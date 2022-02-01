@@ -18,7 +18,7 @@ after_success:
 
   # login in to docker
   - docker login -u $DOCKER_ID -p $DOCKER_PASSWORD
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   # take those images and push them to docker hub
   - docker push scotteau/multi-client 
