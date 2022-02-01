@@ -16,7 +16,7 @@ after_success:
   - docker build -t scotteau/multi-nginx ./nginx
   - docker build -t scotteau/multi-worker ./worker
 
-  # login in to docker
+  # login in to docker hub
   - docker login -u $DOCKER_ID -p $DOCKER_PASSWORD
   # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
