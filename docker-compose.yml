@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  client:
+    stdin_open: true
+    build: 
+      context: ./client/
+      dockerfile: Dockerfile.dev
+
+  worker:
+    build: 
+      context: ./worker/
+      dockerfile: Dockerfile.dev
+
+  api:
+    build:
+      context: ./server/
+      dockerfile: Dockerfile.dev
+
+  redis: 
+    image: redis
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+  
+  nginx: 
+    image: nginx
+    
