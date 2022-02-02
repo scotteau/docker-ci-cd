@@ -1,4 +1,4 @@
 # docker-ci-cd
 
 
-Project for testing CI/CD pipeline with Jenkins
+Project for testing CI/CD pipeline with Jenkins.
